@@ -38,7 +38,7 @@ type NewKYCAction struct {
 	Approve bool `json:"approve"`
 }
 
-// KYC Submitted by User
+// KYC Submitted by User and Signal workflow with new kyc data
 func KycSubmit(w http.ResponseWriter, r *http.Request) {
 	new_kyc := &NewKYCRequest{}
 	err := json.NewDecoder(r.Body).Decode(new_kyc)
@@ -75,7 +75,7 @@ func KycSubmit(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-// Action on KYC by Agent
+// Action on KYC by Agent and Signal Workflow that KYC action has occured
 func ActionKYC(w http.ResponseWriter, r *http.Request) {
 	kyc_action := &NewKYCAction{}
 	err := json.NewDecoder(r.Body).Decode(kyc_action)

@@ -18,12 +18,7 @@ type NewUser struct {
 	Password string `json:"password"`
 }
 
-type SignUpResponse struct {
-	User  model.User `json:"user"`
-	RunID string     `json:"run_id"`
-}
-
-// User Sign up
+// User Sign up and trigger background process
 func SignUp(w http.ResponseWriter, r *http.Request) {
 	new_user := &NewUser{}
 	err := json.NewDecoder(r.Body).Decode(new_user)
@@ -35,6 +30,7 @@ func SignUp(w http.ResponseWriter, r *http.Request) {
 		resp["message"] = "Some Error Occurred"
 		json.NewEncoder(w).Encode(resp)
 	} else {
+
 		user := model.User{
 			Email: new_user.Email,
 			Id:    uuid.New().String(),
@@ -60,6 +56,7 @@ func triggerWorkflow(user model.User) string {
 		ID:        user.Id,
 		TaskQueue: app.KYCTaskQueue,
 	}
+	// create workflow
 	we, err := c.ExecuteWorkflow(context.Background(), options, kyc_workflow.KYCWorkflow, user)
 	if err != nil {
 		log.WithError(err).Error("unable to complete Workflow")
