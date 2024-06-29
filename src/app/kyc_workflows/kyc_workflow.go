@@ -65,6 +65,10 @@ func KYCWorkflow(ctx workflow.Context, user model.User) (string, error) {
 	// Trigger notification for KYC results
 	var result string
 	err := workflow.ExecuteActivity(ctx, kyc_activity.SendKYCNotification, request_kyc_notification).Get(ctx, &result)
-
-	return result, err
+	if !kyc_request_action.Approve { // Restart KYC Process on Rejection
+		err := workflow.NewContinueAsNewError(ctx, KYCWorkflow, user)
+		return "", err
+	} else {
+		return result, err
+	}
 }
