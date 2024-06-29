@@ -1,7 +1,7 @@
 package main
 
 import (
-	"kyc/app/handlers"
+	"kyc/src/app/handlers"
 	"net/http"
 
 	log "github.com/sirupsen/logrus"
