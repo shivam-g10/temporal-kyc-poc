@@ -21,7 +21,37 @@ Open two terminal windows and execute the following commands:
     ```sh
     go run src/server/main.go
     ```
+## APIs
+API documentation available in [Postman](https://www.postman.com/shivam-g10/workspace/kodingkorp-public-apis/collection/8417084-3f699e65-579a-46b6-8472-e6875bb47d03?action=share&creator=8417084)
 
+## Project Structure
+
+The directory structure of the project is as follows:
+```sh
+.
+├── src 
+│   ├── app
+│   │   ├── handlers # server APIs
+│   │   │   ├── auth.go
+│   │   │   └── kyc.go
+│   │   ├── kyc_activities # temporal activities
+│   │   │   └── send_kyc_notification.go
+│   │   ├── kyc_workflows # temporal workflows
+│   │   │   ├── kyc_workflow.go
+│   │   │   └── request_kyc.go
+│   │   ├── models # data models
+│   │   │   ├── kyc_request.go
+│   │   │   └── user.go
+│   │   └── shared.go # shared constants
+│   ├── server # server main
+│   │   └── main.go
+│   └── worker # worker main
+│       └── main.go
+├── LICENSE
+├── README.md
+├── go.mod
+└── go.sum
+```
 ## Additional Information
 
 For more information on how Temporal works and its capabilities, please refer to the [Temporal Documentation](https://docs.temporal.io/docs/go-overview).
