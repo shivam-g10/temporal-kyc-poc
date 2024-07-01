@@ -11,7 +11,7 @@ import (
 	"go.temporal.io/sdk/workflow"
 )
 
-// Workflow to manage
+// Workflow to manage KYC process
 func KYCWorkflow(ctx workflow.Context, user model.User) (string, error) {
 	// activities should complete in 5 seconds
 	options := workflow.ActivityOptions{

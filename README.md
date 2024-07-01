@@ -52,6 +52,8 @@ The directory structure of the project is as follows:
 ├── go.mod
 └── go.sum
 ```
+## Flowchart
+![alt text](./docs/KYC%20PoC.png "Title")
 ## Additional Information
 
 For more information on how Temporal works and its capabilities, please refer to the [Temporal Documentation](https://docs.temporal.io/docs/go-overview).
